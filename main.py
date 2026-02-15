@@ -5,7 +5,6 @@ import sqlite3
 from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 
-
 with open("main.ui", "r") as f:
     template = f.read()
 
@@ -13,8 +12,8 @@ with open("main.ui", "r") as f:
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        f = io.StringIO(template)
-        uic.loadUi(f, self)
+        temp = io.StringIO(template)
+        uic.loadUi(temp, self)
         self.con = sqlite3.connect("coffee.sqlite")
         self.cur = self.con.cursor()
         info = self.cur.execute("""SELECT ID, name, baking, type, desc, price, volume FROM coffee""").fetchall()
